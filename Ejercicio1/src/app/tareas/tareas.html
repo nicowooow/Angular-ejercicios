@@ -1,0 +1,18 @@
+<h2>Lista de tareas</h2>
+<table>
+  @for (tarea of tareas(); track tarea.id) {
+    <tr id="tarea-{{tarea.id}}">
+      <td>
+        {{ tarea.titulo }}
+      </td>
+      <td>
+        {{ tarea.completada ? "hecha" : "no hecha" }}
+      </td>
+    </tr>
+  }
+</table>
+<style>
+  td{
+    border: 1px solid gray;
+  }
+</style>

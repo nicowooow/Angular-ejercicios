@@ -4,9 +4,9 @@
     <div class="form-tareas">
       <form action="POST">
         <label for="tarea">Nombre de la tarea : </label>
-        <input type="text" name="tarea" id="tarea">
+        <input type="text" name="tarea" id="tarea" [(ngModel)]="tituloTarea">
         <br>
-        <input type="button" value="Agregar tarea">
+        <input type="button" value="Agregar tarea" (click)="CrearTarea()">
       </form>
     </div>
     <div class="vista-tareas">
@@ -16,8 +16,13 @@
 </main>
 
 <style>
+  h1{
+    text-align: center;
+  }
  .general-view{
    display: flex;
    gap: 1rem;
+   justify-content: center;
+   align-items: center;
  }
 </style>
