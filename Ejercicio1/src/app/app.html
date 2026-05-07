@@ -1,0 +1,23 @@
+<main class="main">
+  <h1>Bienvenido a tu gestor de tareas</h1>
+  <section class="general-view">
+    <div class="form-tareas">
+      <form action="POST">
+        <label for="tarea">Nombre de la tarea : </label>
+        <input type="text" name="tarea" id="tarea">
+        <br>
+        <input type="button" value="Agregar tarea">
+      </form>
+    </div>
+    <div class="vista-tareas">
+      <app-tareas></app-tareas>
+    </div>
+  </section>
+</main>
+
+<style>
+ .general-view{
+   display: flex;
+   gap: 1rem;
+ }
+</style>
