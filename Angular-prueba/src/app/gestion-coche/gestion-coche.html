@@ -1,1 +1,14 @@
-<p>gestion-coche works!</p>
+<div class="gestion-coche">
+  <label for="inputCoche">ingresar nueva marca de coche: </label>
+  <input type="text" name="inputCoche" id="inputCoche" [(ngModel)]="nuevaMarca">
+
+  <p>vista previa <b>{{ nuevaMarca }}</b></p>
+  <button type="button" (click)="agregarCoche()">agregar</button>
+  <!--   binding  de contenido -->
+  <ul>
+    @for (coche of coches(); track coche) {
+      <li> Este es un coche de marca <b>{{ coche }}</b></li>
+    }
+  </ul>
+
+</div>

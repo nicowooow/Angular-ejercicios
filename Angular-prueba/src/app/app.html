@@ -9,31 +9,20 @@
     } @else {
       <h3>no eres admin</h3>
     }
-
-    <label for="inputCoche">ingresar nueva marca de coche: </label>
-    <input type="text" name="inputCoche" id="inputCoche" [(ngModel)]="nuevaMarca">
-
-    <p>vista previa {{nuevaMarca}}</p>
-    <button type="button" (click)="agregarCoche()">agregar</button>
-    <!--   binding  de contenido -->
-    <ul>
-      @for (coche of coches(); track coche) {
-        <li> Este es un coche de marca <b>{{ coche }}</b></li>
-      }
-    </ul>
-
     <!--    aca se esta poniendo los binding de atributos , [class.(nombre de la clase a agregar)] = "condición" -->
     <h3
       [class.ok]="contador() <= 4"
       [class.ehh]="contador() > 4 && contador() <= 7"
       [class.error]="contador() > 7">Este es el contador : {{ contador() }}</h3>
-    <p>Solo puedes aumentar hasta e>l número 10</p>
+    <p>Solo puedes aumentar hasta el número 10</p>
     <button
       type="button"
       (click)="aumentarContador()"
       [disabled]="contador()==10"
     >cliqueame
     </button>
+
+    <app-gestion-coche></app-gestion-coche>
   </div>
 </main>
 

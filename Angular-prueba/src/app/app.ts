@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import {GestionCoche} from './gestion-coche/gestion-coche';
 // definición del componente usando el @component
 @Component({
   selector: 'app-root', // como se llamara la etiqueta o componente a utilizar
-  imports: [RouterOutlet, FormsModule], // qué otros componentes o apartados tienen que importar
+  imports: [RouterOutlet, FormsModule, GestionCoche], // qué otros componentes o apartados tienen que importar
   templateUrl: './app.html', // plantilla que utilizara en un fichero html externo
   styleUrl: './app.css', // estilos que utilizara en un fichero css externo
 })
@@ -19,18 +19,9 @@ export class App {
 
   protected contador = signal(0);
 
-  aumentarContador(){
+  aumentarContador() {
     // como en angular no se puede modificar los valores de forma directa se hace mediante una
     // método ya definido "update()", recibiendo como parametro de entrada un lambda
-    this.contador.update(c=> c + 1)
-  };
-
-  protected readonly coches = signal(['ford', 'audi', 'toyota']);
-
-  protected nuevaMarca = "";
-
-  agregarCoche(){
-    this.coches.update( cochesAntes=> [...cochesAntes, this.nuevaMarca]);
-    this.nuevaMarca = "";
+    this.contador.update((c) => c + 1);
   }
 }
