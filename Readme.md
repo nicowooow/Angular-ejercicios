@@ -20,3 +20,7 @@ ng new nombre-app
 ```bash
 ng serve
 ```
+- crear un nuevo componente
+```bash
+ng generate component component-name
+```
