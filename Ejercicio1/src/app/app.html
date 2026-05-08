@@ -2,27 +2,55 @@
   <h1>Bienvenido a tu gestor de tareas</h1>
   <section class="general-view">
     <div class="form-tareas">
-      <form action="POST">
-        <label for="tarea">Nombre de la tarea : </label>
-        <input type="text" name="tarea" id="tarea" [(ngModel)]="tituloTarea">
+      <form (ngSubmit)="crearTareas()">
+        <label for="title-tarea">Nombre de la tarea : </label>
+        <input
+          required
+          type="text"
+          name="title-tarea"
+          id="title-tarea"
+          [(ngModel)]="tituloTarea">
         <br>
-        <input type="button" value="Agregar tarea" (click)="CrearTarea()">
+        @if (message()) {
+          <span style="font-size: 1.5rem; color: #ff4c4c">{{ message() }}</span>
+        }
+        <p>¿¿Esta realizada??</p>
+        <input
+          type="radio"
+          name="hecha-tarea"
+          id="hecha-no"
+          [value]=0
+          [(ngModel)]="hechaTarea"
+        >
+        <label for="hecha-no">No</label>
+        <input
+          type="radio"
+          name="hecha-tarea"
+          id="hecha-si"
+          [value]=1
+          [(ngModel)]="hechaTarea"
+        >
+        <label for="hecha-si">Si</label>
+        <br>
+        <input type="submit" value="Agregar tarea">
       </form>
     </div>
     <div class="vista-tareas">
-      <app-tareas></app-tareas>
+      <app-tareas [listaTareas]="tareas()" (idDel)="eliminar($event)" (idCha)="cambiar($event)">
+      </app-tareas>
     </div>
   </section>
 </main>
 
 <style>
-  h1{
+  h1 {
     text-align: center;
   }
- .general-view{
-   display: flex;
-   gap: 1rem;
-   justify-content: center;
-   align-items: center;
- }
+
+  .general-view {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
