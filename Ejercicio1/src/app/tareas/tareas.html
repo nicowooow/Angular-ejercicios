@@ -1,18 +1,42 @@
 <h2>Lista de tareas</h2>
+
+@if (listaTareas().length < 1) {
+  <p>no hay tareas</p>
+}
 <table>
-  @for (tarea of tareas(); track tarea.id) {
-    <tr id="tarea-{{tarea.id}}">
+  @for (tarea of listaTareas(); track tarea.id) {
+    <tr id="tarea-{{tarea.id}}" [class.hecha]="tarea.hecha" [class.no-hecha]="!tarea.hecha">
       <td>
         {{ tarea.titulo }}
       </td>
       <td>
-        {{ tarea.completada ? "hecha" : "no hecha" }}
+        {{ tarea.hecha ? "hecha" : "no hecha" }}
+      </td>
+      <td>
+        <button type="button" (click)="cambiarEstado(tarea.id)">cambiar estado</button>
+      </td>
+      <td>
+        <button type="button" (click)="eliminar(tarea.id)">eliminar</button>
       </td>
     </tr>
   }
 </table>
 <style>
-  td{
+  td {
     border: 1px solid gray;
+    padding: .5rem 1rem;
+    font-size: 1.2rem;
+  }
+
+  .hecha {
+    background: #d2ffce;
+  }
+
+  .no-hecha {
+    background: #ffcece;
+
+    &>td:first-child {
+      text-decoration: line-through;
+    }
   }
 </style>

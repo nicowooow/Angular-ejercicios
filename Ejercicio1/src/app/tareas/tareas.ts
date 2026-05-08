@@ -1,10 +1,11 @@
-import {Component, signal} from '@angular/core';
+import {Component, input, output, signal} from '@angular/core';
 
 interface ITarea {
   id: number,
   titulo: string,
-  completada: boolean,
+  hecha: boolean,
 }
+
 
 @Component({
   selector: 'app-tareas',
@@ -13,32 +14,21 @@ interface ITarea {
   styleUrl: './tareas.css',
 })
 export class Tareas {
-  protected readonly tareas = signal<ITarea[]>([
-    {
-      "id": 1,
-      "titulo": "Comprar comida",
-      "completada": false,
-    },
-    {
-      "id": 2,
-      "titulo": "Terminar proyecto Angular",
-      "completada": false,
-    },
-    {
-      "id": 3,
-      "titulo": "Pagar cuentas",
-      "completada": true,
-    },
-    {
-      "id": 4,
-      "titulo": "Ir al gimnasio",
-      "completada": false,
-    },
-    {
-      "id": 5,
-      "titulo": "Estudiar para examen de Derecho",
-      "completada": false,
-    }
-  ]);
 
+
+  protected idCha = output<number>();
+
+  cambiarEstado(_id: number) {
+    this.idCha.emit(_id);
+  }
+
+  protected idDel = output<number>();
+
+  eliminar(_id: number) {
+    this.idDel.emit(_id);
+  }
+
+  listaTareas = input.required<ITarea[]>();
+
+  protected readonly console = console;
 }
