@@ -4,7 +4,7 @@
   <p>no hay tareas</p>
 }
 <table>
-  @for (tarea of listaTareas(); track tarea.id) {
+  @for (tarea of listaTareas(); track tarea) {
     <tr id="tarea-{{tarea.id}}" [class.hecha]="tarea.hecha" [class.no-hecha]="!tarea.hecha">
       <td>
         {{ tarea.titulo }}

@@ -60,13 +60,14 @@ export class App {
     // <app-tareas [listaTareas]="tareas()"></app-tareas>
     // donde [listaTareas] es el nombre de la variable que está esperando los datos en dicho componente
 
-    if(this.tituloTarea().trim() === null || this.tituloTarea().trim() === "" ) {
-      this.message.update(m=> "tienes que llenar el titulo")
+    if (this.tituloTarea().trim() === null || this.tituloTarea().trim() === "") {
+      this.message.update(m => "tienes que llenar el titulo")
       return;
     }
+    var ultimoid = this.tareas().at(-1);
 
     const tarea: ITarea = {
-      id: this.tareas().length + 1,
+      id: (ultimoid?.id ?? 0)+ 1,
       titulo: this.tituloTarea(),
       hecha: this.hechaTarea() == 1
     }
@@ -75,7 +76,7 @@ export class App {
     this.tareas.update(lista => [...lista, tarea]);
     this.tituloTarea.update(v => "");
     this.hechaTarea.update(v => 0);
-    this.message.update(m=>"");
+    this.message.update(m => "");
   }
 
   eliminar(_id: number) {
