@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { GestionCocheServicio } from '../gestion-coche-servicio';
 
 @Component({
   selector: 'app-gestion-coche',
@@ -8,12 +9,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './gestion-coche.css',
 })
 export class GestionCoche {
-  protected readonly coches = signal(['ford', 'audi', 'toyota']);
+  // hacer DI
+  // version recomendada por angular
+  private gestionCocheServicio = inject(GestionCocheServicio);
+
+  // esto se puede hacer tipo C#
+  // constructor(private gestion: GestionCocheServicio) {}
 
   protected nuevaMarca = '';
 
   agregarCoche() {
-    this.coches.update((cochesAntes) => [...cochesAntes, this.nuevaMarca]);
-    this.nuevaMarca = '';
+    this.gestionCocheServicio.nuevaMarca(this.nuevaMarca);
   }
 }
