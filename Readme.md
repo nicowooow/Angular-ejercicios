@@ -24,3 +24,7 @@ ng serve
 ```bash
 ng generate component component-name
 ```
+- crear un servicio
+```bash
+ng generate service service-name
+```
