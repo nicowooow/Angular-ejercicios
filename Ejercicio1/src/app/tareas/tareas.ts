@@ -1,4 +1,6 @@
 import {Component, input, output, signal} from '@angular/core';
+import {MatCardModule} from '@angular/material/card';
+import {MatButton} from '@angular/material/button';
 
 interface ITarea {
   id: number,
@@ -9,7 +11,7 @@ interface ITarea {
 
 @Component({
   selector: 'app-tareas',
-  imports: [],
+  imports: [MatCardModule, MatButton],
   templateUrl: './tareas.html',
   styleUrl: './tareas.css',
 })

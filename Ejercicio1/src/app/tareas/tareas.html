@@ -3,29 +3,57 @@
 @if (listaTareas().length < 1) {
   <p>no hay tareas</p>
 }
-<table>
-  @for (tarea of listaTareas(); track tarea) {
-    <tr id="tarea-{{tarea.id}}" [class.hecha]="tarea.hecha" [class.no-hecha]="!tarea.hecha">
-      <td>
-        {{ tarea.titulo }}
-      </td>
-      <td>
-        {{ tarea.hecha ? "hecha" : "no hecha" }}
-      </td>
-      <td>
-        <button type="button" (click)="cambiarEstado(tarea.id)">cambiar estado</button>
-      </td>
-      <td>
-        <button type="button" (click)="eliminar(tarea.id)">eliminar</button>
-      </td>
-    </tr>
-  }
-</table>
+
+<mat-card>
+  <table>
+    @for (tarea of listaTareas(); track tarea) {
+      <tr id="tarea-{{tarea.id}}" [class.hecha]="tarea.hecha" [class.no-hecha]="!tarea.hecha">
+        <td>
+          {{ tarea.titulo }}
+        </td>
+        <td>
+          {{ tarea.hecha ? "hecha" : "no hecha" }}
+        </td>
+        <td>
+          <section>
+            <div class="example-button-row">
+              <button
+                type="button"
+                (click)="cambiarEstado(tarea.id)"
+                matButton="tonal">cambiar estado
+              </button>
+            </div>
+          </section>
+        </td>
+        <td>
+          <section>
+            <div class="example-button-row">
+              <button
+                type="button"
+                (click)="eliminar(tarea.id)"
+                matButton="tonal">eliminar
+              </button>
+            </div>
+          </section>
+        </td>
+
+      </tr>
+    }
+  </table>
+</mat-card>
 <style>
+
+  button{
+    border: 1px solid black;
+  }
   td {
-    border: 1px solid gray;
     padding: .5rem 1rem;
     font-size: 1.2rem;
+  }
+
+  table {
+    padding: 1rem;
+    width: 100%;
   }
 
   .hecha {
@@ -35,7 +63,7 @@
   .no-hecha {
     background: #ffcece;
 
-    &>td:first-child {
+    & > td:first-child {
       text-decoration: line-through;
     }
   }

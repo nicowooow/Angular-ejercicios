@@ -28,3 +28,10 @@ ng generate component component-name
 ```bash
 ng generate service service-name
 ```
+
+## componentes de angular
+
+- angular material ui
+```bash
+ng add @angular/material
+```

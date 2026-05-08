@@ -1,48 +1,55 @@
 <main class="main">
   <h1>Bienvenido a tu gestor de tareas</h1>
   <section class="general-view">
-    <div class="form-tareas">
-      <form (ngSubmit)="crearTareas()">
-        <label for="title-tarea">Nombre de la tarea : </label>
-        <input
-          required
-          type="text"
-          name="title-tarea"
-          id="title-tarea"
-          [(ngModel)]="tituloTarea">
-        <br>
+    <mat-card class="example-card" appearance="outlined">
+      <form (ngSubmit)="crearTareas()" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre de la tarea</mat-label>
+          <input
+            matInput
+            placeholder="quiero hacer ..."
+            [(ngModel)]="tituloTarea"
+            name="tituloTarea"
+          >
+        </mat-form-field>
+
         @if (message()) {
-          <span style="font-size: 1.5rem; color: #ff4c4c">{{ message() }}</span>
+          <br><span style="font-size: 1.5rem; color: #ff4c4c">{{ message() }}</span>
         }
-        <p>¿¿Esta realizada??</p>
-        <input
-          type="radio"
-          name="hecha-tarea"
-          id="hecha-no"
-          [value]=0
-          [(ngModel)]="hechaTarea"
-        >
-        <label for="hecha-no">No</label>
-        <input
-          type="radio"
-          name="hecha-tarea"
-          id="hecha-si"
-          [value]=1
-          [(ngModel)]="hechaTarea"
-        >
-        <label for="hecha-si">Si</label>
         <br>
-        <input type="submit" value="Agregar tarea">
+        <mat-slide-toggle
+          labelPosition="before"
+          [(ngModel)]="hechaTarea"
+          name="hechaTarea"
+        >¿¿Esta realizada??
+        </mat-slide-toggle>
+
+        <br>
+        <section>
+          <div class="example-button-row">
+            <button matButton="tonal">Agregar tarea</button>
+          </div>
+        </section>
       </form>
-    </div>
+    </mat-card>
     <div class="vista-tareas">
-      <app-tareas [listaTareas]="tareas()" (idDel)="eliminar($event)" (idCha)="cambiar($event)">
+      <app-tareas
+        [listaTareas]="tareas()"
+        (idDel)="eliminarTarea($event)"
+        (idCha)="cambiarEstado($event)">
       </app-tareas>
     </div>
   </section>
 </main>
 
 <style>
+  main {
+    background: #ace1e1;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+  }
+
   h1 {
     text-align: center;
   }
@@ -52,5 +59,36 @@
     gap: 1rem;
     justify-content: center;
     align-items: center;
+  }
+
+  /* del boton que nos dice angular */
+
+  section {
+    display: flex;
+    align-items: center;
+  }
+
+  .example-form {
+    padding: 1rem;
+  }
+
+  .example-label {
+    font-size: 14px;
+    margin: 0 16px 0 8px;
+    min-width: 120px;
+  }
+
+  .example-button-row {
+    max-width: 600px;
+  }
+
+  .example-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+  }
+
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 </style>
