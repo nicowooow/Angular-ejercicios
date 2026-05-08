@@ -2,6 +2,7 @@
   <h1>Bienvenido a tu gestor de tareas</h1>
   <section class="general-view">
     <mat-card class="example-card" appearance="outlined">
+      <h2>Creación de tareas</h2>
       <form (ngSubmit)="crearTareas()" class="example-form">
         <mat-form-field class="example-full-width">
           <mat-label>Nombre de la tarea</mat-label>
@@ -14,14 +15,17 @@
         </mat-form-field>
 
         @if (message()) {
-          <br><span style="font-size: 1.5rem; color: #ff4c4c">{{ message() }}</span>
+          <br><span class="message-spn">{{ message() }}</span>
         }
         <br>
         <mat-slide-toggle
           labelPosition="before"
           [(ngModel)]="hechaTarea"
           name="hechaTarea"
-        >¿¿Esta realizada??
+        >
+          <span>
+            ¿¿Esta realizada??
+          </span>
         </mat-slide-toggle>
 
         <br>
@@ -42,53 +46,3 @@
   </section>
 </main>
 
-<style>
-  main {
-    background: #ace1e1;
-    width: 100%;
-    height: 100%;
-    inset: 0;
-  }
-
-  h1 {
-    text-align: center;
-  }
-
-  .general-view {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-  }
-
-  /* del boton que nos dice angular */
-
-  section {
-    display: flex;
-    align-items: center;
-  }
-
-  .example-form {
-    padding: 1rem;
-  }
-
-  .example-label {
-    font-size: 14px;
-    margin: 0 16px 0 8px;
-    min-width: 120px;
-  }
-
-  .example-button-row {
-    max-width: 600px;
-  }
-
-  .example-button-row .mat-mdc-button-base {
-    margin: 8px 8px 8px 0;
-  }
-
-  .example-flex-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-</style>

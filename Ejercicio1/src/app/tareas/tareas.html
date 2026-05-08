@@ -1,10 +1,10 @@
+<mat-card class="example-card">
 <h2>Lista de tareas</h2>
 
 @if (listaTareas().length < 1) {
   <p>no hay tareas</p>
 }
 
-<mat-card>
   <table>
     @for (tarea of listaTareas(); track tarea) {
       <tr id="tarea-{{tarea.id}}" [class.hecha]="tarea.hecha" [class.no-hecha]="!tarea.hecha">
@@ -41,30 +41,3 @@
     }
   </table>
 </mat-card>
-<style>
-
-  button{
-    border: 1px solid black;
-  }
-  td {
-    padding: .5rem 1rem;
-    font-size: 1.2rem;
-  }
-
-  table {
-    padding: 1rem;
-    width: 100%;
-  }
-
-  .hecha {
-    background: #d2ffce;
-  }
-
-  .no-hecha {
-    background: #ffcece;
-
-    & > td:first-child {
-      text-decoration: line-through;
-    }
-  }
-</style>
