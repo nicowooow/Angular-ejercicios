@@ -1,10 +1,11 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'sortPriority',
 })
 export class SortPriorityPipe implements PipeTransform {
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: ITarea[], ...args: unknown[]): unknown {
+
+    return value.sort((first: ITarea, second: ITarea) => first.prioridad - second.prioridad);
   }
 }
