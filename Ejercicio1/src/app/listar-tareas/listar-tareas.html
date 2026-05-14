@@ -14,7 +14,7 @@
           {{ tarea.hecha ? "hecha" : "no hecha" }}
         </td>
         <td>
-          {{ tarea.prioridad }}
+          {{ tarea.prioridad === 0 ? "alta" : tarea.prioridad === 1 ? "media" : "baja" }}
         </td>
         <td>
           {{ tarea.fechaVencimiento | toDateFormat }}
