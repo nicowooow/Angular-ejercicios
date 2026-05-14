@@ -1,0 +1,47 @@
+<mat-card class="example-card">
+  <h2>Lista de tareas</h2>
+
+  @if (listaTareas().length < 1) {
+    <p>no hay tareas</p>
+  }
+
+  <table>
+    @for (tarea of listaTareas(); track tarea) {
+      <tr id="tarea-{{tarea.id}}" [class.hecha]="tarea.hecha" [class.no-hecha]="!tarea.hecha">
+        <td>
+          {{ tarea.titulo | toCammelCase }}
+        </td>
+        <td>
+          {{ tarea.hecha ? "hecha" : "no hecha" }}
+        </td>
+        <td>
+          {{ tarea.prioridad }}
+        </td>
+        <td>
+          {{ tarea.fechaVencimiento | toDateFormat }}
+        </td>
+        <td>
+          <section>
+            <div class="example-button-row">
+              <button
+                type="button"
+                (click)="cambiarEstado(tarea.id)"
+                matButton="tonal">cambiar estado
+              </button>
+            </div>
+          </section>
+        </td>
+        <td>
+          <div class="example-button-row">
+            <button
+              type="button"
+              (click)="eliminar(tarea.id)"
+              matButton="tonal">eliminar
+            </button>
+          </div>
+        </td>
+
+      </tr>
+    }
+  </table>
+</mat-card>

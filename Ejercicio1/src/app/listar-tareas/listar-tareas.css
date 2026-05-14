@@ -1,0 +1,45 @@
+
+button {
+  border: 1px solid black;
+  background: #A7D8DE;
+  color: #1F2937;
+}
+
+td {
+  padding: .5rem 1rem;
+  font-size: 1.2rem;
+}
+
+table {
+  padding: 1rem;
+  width: 100%;
+}
+
+.hecha {
+  background: rgba(210, 255, 206, 0.78);
+}
+
+.no-hecha {
+  background: rgba(255, 206, 206, 0.78);
+
+  & > td:first-child {
+    text-decoration: line-through;
+  }
+}
+
+.example-card {
+  padding: 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid #D1D5DB;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
+
+  color: #ffffff;
+  font-family: "ui-monospace";
+
+  & > table > * {
+    color: #1F2937;
+  }
+}
+
