@@ -30,7 +30,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatRadioModule],
   templateUrl: './tareas.html',
   styleUrl: './tareas.css',
-  providers: [TareaService, provideNativeDateAdapter()],
+  providers: [provideNativeDateAdapter()],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
@@ -42,7 +42,7 @@ export class Tareas {
   // protected readonly title = signal('Ejercicio1');
   protected tituloTarea = model("");
   protected hechaTarea = model(false);
-  protected prioridadTarea = model(2);
+  protected prioridadTarea = model(0);
   protected fechaTarea = model(new Date());
 
   protected message = signal("");
@@ -68,7 +68,7 @@ export class Tareas {
       id: (ultimoid?.id ?? 0) + 1,
       titulo: this.tituloTarea(),
       hecha: this.hechaTarea(),
-      prioridad: this.prioridadTarea(),
+      prioridad: Number(this.prioridadTarea()),
       fechaVencimiento: this.fechaTarea()
     }
     // console.log(tarea)
@@ -77,5 +77,6 @@ export class Tareas {
     this.tituloTarea.set("");
     this.hechaTarea.set(false);
     this.message.set("");
+    this.prioridadTarea.set(0);
   }
 }

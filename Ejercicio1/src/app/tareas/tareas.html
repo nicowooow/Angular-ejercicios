@@ -43,7 +43,9 @@
         </mat-form-field>
         <br><br>
         <!-- input de selector-->
-        <mat-radio-group aria-label="prioridad" [(ngModel)]="prioridadTarea">
+        <mat-radio-group aria-label="prioridad"
+                         [value]="prioridadTarea()"
+                         (change)="prioridadTarea.set($event.value)">
           <mat-radio-button [value]="0">prioridad alta</mat-radio-button>
           <mat-radio-button [value]="1">prioridad media</mat-radio-button>
           <mat-radio-button [value]="2">prioridad baja</mat-radio-button>
