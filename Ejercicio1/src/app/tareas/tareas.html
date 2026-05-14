@@ -4,6 +4,8 @@
     <mat-card class="example-card" appearance="outlined">
       <h2>Creación de tareas</h2>
       <form (ngSubmit)="crearTareas()" class="example-form">
+
+        <!-- input de texto-->
         <mat-form-field class="example-full-width">
           <mat-label>Nombre de la tarea</mat-label>
           <input
@@ -18,6 +20,7 @@
           <br><span class="message-spn">{{ message() }}</span>
         }
         <br>
+        <!-- input de selector boolean-->
         <mat-slide-toggle
           labelPosition="before"
           [(ngModel)]="hechaTarea"
@@ -27,6 +30,24 @@
             ¿¿Esta realizada??
           </span>
         </mat-slide-toggle>
+        <br><br>
+        <!-- input de fecha-->
+        <mat-form-field>
+          <mat-label>Fecha limite</mat-label>
+          <input matInput [matDatepicker]="picker"
+                 [value]="fechaTarea()"
+                 (dateChange)="fechaTarea.set($event.value)">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br><br>
+        <!-- input de selector-->
+        <mat-radio-group aria-label="prioridad" [(ngModel)]="prioridadTarea">
+          <mat-radio-button [value]="0">prioridad alta</mat-radio-button>
+          <mat-radio-button [value]="1">prioridad media</mat-radio-button>
+          <mat-radio-button [value]="2">prioridad baja</mat-radio-button>
+        </mat-radio-group>
 
         <br>
         <section>

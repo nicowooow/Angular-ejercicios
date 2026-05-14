@@ -13,7 +13,6 @@ main {
 
 h1 {
   text-align: center;
-  color: aliceblue;
   font-size: 2rem;
 }
 
@@ -39,7 +38,6 @@ h1 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(10px);
 
-  color: #ffffff;
   font-family: "ui-monospace";
 }
 
@@ -73,4 +71,8 @@ section {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+
+.mat-mdc-radio-button ~ .mat-mdc-radio-button {
+  margin-left: 16px;
 }

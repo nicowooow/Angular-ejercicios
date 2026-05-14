@@ -1,4 +1,4 @@
-import {Component, inject, input, model, output, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, model, signal} from '@angular/core';
 import {ListarTareas} from '../listar-tareas/listar-tareas';
 import {FormsModule} from '@angular/forms';
 import {MatSlideToggle} from '@angular/material/slide-toggle';
@@ -6,9 +6,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
-import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
 import {TareaService} from '../tarea-service';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @Component({
@@ -19,14 +22,16 @@ import {TareaService} from '../tarea-service';
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggle,
+    MatDatepickerModule,
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
-    MatCardModule],
+    MatCardModule,
+    MatRadioModule],
   templateUrl: './tareas.html',
   styleUrl: './tareas.css',
-  providers: [TareaService]
-
+  providers: [TareaService, provideNativeDateAdapter()],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class Tareas {
@@ -37,9 +42,8 @@ export class Tareas {
   // protected readonly title = signal('Ejercicio1');
   protected tituloTarea = model("");
   protected hechaTarea = model(false);
-  protected prioridadTarea = model(0);
+  protected prioridadTarea = model(2);
   protected fechaTarea = model(new Date());
-
 
   protected message = signal("");
   protected tareas = this.tareaService.tareas;
