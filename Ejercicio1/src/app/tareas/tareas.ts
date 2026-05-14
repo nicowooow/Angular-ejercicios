@@ -2,6 +2,7 @@ import {Component, input, output, signal} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
 import {ToUpperPipe} from '../to-upper-pipe';
+import {ToCammelCasePipe} from '../to-cammel-case-pipe';
 
 interface ITarea {
   id: number,
@@ -12,7 +13,7 @@ interface ITarea {
 
 @Component({
   selector: 'app-tareas',
-  imports: [MatCardModule, MatButton, ToUpperPipe],
+  imports: [MatCardModule, MatButton, ToUpperPipe, ToCammelCasePipe],
   templateUrl: './tareas.html',
   styleUrl: './tareas.css',
 })
