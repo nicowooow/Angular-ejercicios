@@ -1,14 +1,14 @@
 import {Component, input, output, signal} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
-import {ToUpperPipe} from '../to-upper-pipe';
 import {ToCammelCasePipe} from '../to-cammel-case-pipe';
 import {ToDateFormatPipe} from '../to-date-format-pipe';
+import {SortPriorityPipe} from '../sort-priority-pipe';
 
 
 @Component({
   selector: 'app-listar-tareas',
-  imports: [MatCardModule, MatButton, ToCammelCasePipe, ToDateFormatPipe],
+  imports: [MatCardModule, MatButton, ToCammelCasePipe, ToDateFormatPipe, SortPriorityPipe],
   templateUrl: './listar-tareas.html',
   styleUrl: './listar-tareas.css',
 })

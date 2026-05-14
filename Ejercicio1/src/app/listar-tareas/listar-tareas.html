@@ -4,9 +4,8 @@
   @if (listaTareas().length < 1) {
     <p>no hay tareas</p>
   }
-
   <table>
-    @for (tarea of listaTareas(); track tarea) {
+    @for (tarea of listaTareas()|sortPriority; track tarea) {
       <tr id="tarea-{{tarea.id}}" [class.hecha]="tarea.hecha" [class.no-hecha]="!tarea.hecha">
         <td>
           {{ tarea.titulo | toCammelCase }}
