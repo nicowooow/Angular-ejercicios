@@ -1,43 +1,48 @@
-<mat-card class="example-card">
-  <h2>Lista de tareas</h2>
+<main class="main">
+  <h1>Bienvenido a tu gestor de tareas</h1>
+  <section class="general-view">
+    <mat-card class="example-card" appearance="outlined">
+      <h2>Creación de tareas</h2>
+      <form (ngSubmit)="crearTareas()" class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre de la tarea</mat-label>
+          <input
+            matInput
+            placeholder="quiero hacer ..."
+            [(ngModel)]="tituloTarea"
+            name="tituloTarea"
+          >
+        </mat-form-field>
 
-  @if (listaTareas().length < 1) {
-    <p>no hay tareas</p>
-  }
+        @if (message()) {
+          <br><span class="message-spn">{{ message() }}</span>
+        }
+        <br>
+        <mat-slide-toggle
+          labelPosition="before"
+          [(ngModel)]="hechaTarea"
+          name="hechaTarea"
+        >
+          <span>
+            ¿¿Esta realizada??
+          </span>
+        </mat-slide-toggle>
 
-  <table>
-    @for (tarea of listaTareas(); track tarea) {
-      <tr id="tarea-{{tarea.id}}" [class.hecha]="tarea.hecha" [class.no-hecha]="!tarea.hecha">
-        <td>
-          {{ tarea.titulo | toCammelCase }}
-        </td>
-        <td>
-          {{ tarea.hecha ? "hecha" : "no hecha" }}
-        </td>
-        <td>
-          <section>
-            <div class="example-button-row">
-              <button
-                type="button"
-                (click)="cambiarEstado(tarea.id)"
-                matButton="tonal">cambiar estado
-              </button>
-            </div>
-          </section>
-        </td>
-        <td>
-          <section>
-            <div class="example-button-row">
-              <button
-                type="button"
-                (click)="eliminar(tarea.id)"
-                matButton="tonal">eliminar
-              </button>
-            </div>
-          </section>
-        </td>
+        <br>
+        <section>
+          <div class="example-button-row">
+            <button matButton="tonal">Agregar tarea</button>
+          </div>
+        </section>
+      </form>
+    </mat-card>
+    <div class="vista-tareas">
+      <app-listar-tareas
+        [listaTareas]="tareas()"
+        (idDel)="eliminarTarea($event)"
+        (idCha)="cambiarEstado($event)">
+      </app-listar-tareas>
+    </div>
+  </section>
+</main>
 
-      </tr>
-    }
-  </table>
-</mat-card>

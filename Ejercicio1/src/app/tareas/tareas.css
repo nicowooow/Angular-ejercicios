@@ -1,32 +1,37 @@
 
-button{
-  border: 1px solid black;
-  background: #A7D8DE;
-  color: #1F2937;
-}
-td {
-  padding: .5rem 1rem;
-  font-size: 1.2rem;
+.message-spn {
+  font-size: 1.5rem;
+  color: #ff4c4c
 }
 
-table {
-  padding: 1rem;
+
+main {
   width: 100%;
+  height: 100%;
+  inset: 0;
 }
 
-.hecha {
-  background: rgba(210, 255, 206, 0.78);
+h1 {
+  text-align: center;
+  color: aliceblue;
+  font-size: 2rem;
 }
 
-.no-hecha {
-  background: rgba(255, 206, 206, 0.78);
-
-  & > td:first-child {
-    text-decoration: line-through;
-  }
+.general-view {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  grid-template-areas: "form list";
 }
 
-.example-card{
+.example-card {
+  grid-area: form;
+  position: relative;
+  align-self: center;
+  justify-self: center;
   padding: 1rem;
   text-align: center;
   background: rgba(255, 255, 255, 0.09);
@@ -36,9 +41,36 @@ table {
 
   color: #ffffff;
   font-family: "ui-monospace";
-
-  &>table>*{
-    color: #1F2937;
-  }
 }
 
+.vista-tareas {
+  grid-area: list;
+}
+
+/* del boton que nos dice angular */
+
+
+section {
+  display: flex;
+  align-items: center;
+}
+
+.example-label {
+  font-size: 14px;
+  margin: 0 16px 0 8px;
+  min-width: 120px;
+}
+
+.example-button-row {
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

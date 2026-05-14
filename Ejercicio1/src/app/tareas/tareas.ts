@@ -1,38 +1,77 @@
-import {Component, input, output, signal} from '@angular/core';
+import {Component, inject, input, model, output, signal} from '@angular/core';
+import {ListarTareas} from '../listar-tareas/listar-tareas';
+import {FormsModule} from '@angular/forms';
+import {MatSlideToggle} from '@angular/material/slide-toggle';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
-import {MatButton} from '@angular/material/button';
-import {ToUpperPipe} from '../to-upper-pipe';
-import {ToCammelCasePipe} from '../to-cammel-case-pipe';
-
-interface ITarea {
-  id: number,
-  titulo: string,
-  hecha: boolean,
-}
+import {TareaService} from '../tarea-service';
 
 
 @Component({
   selector: 'app-tareas',
-  imports: [MatCardModule, MatButton, ToUpperPipe, ToCammelCasePipe],
+  imports: [
+    ListarTareas,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSlideToggle,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatCardModule],
   templateUrl: './tareas.html',
   styleUrl: './tareas.css',
+  providers: [TareaService]
+
 })
+
 export class Tareas {
 
+  protected tareaService = inject(TareaService);
 
-  protected idCha = output<number>();
+
+  // protected readonly title = signal('Ejercicio1');
+  protected tituloTarea = model("");
+  protected hechaTarea = model(false);
+  protected prioridadTarea = model(0);
+  protected fechaTarea = model(new Date());
+
+
+  protected message = signal("");
+  protected tareas = this.tareaService.tareas;
+
+  eliminarTarea(_id: number) {
+    this.tareaService.EliminarTarea(_id);
+  }
 
   cambiarEstado(_id: number) {
-    this.idCha.emit(_id);
+    this.tareaService.estadoTarea(_id);
   }
 
-  protected idDel = output<number>();
+  crearTareas() {
 
-  eliminar(_id: number) {
-    this.idDel.emit(_id);
+    if (this.tituloTarea().trim() === null || this.tituloTarea().trim() === "") {
+      this.message.update(m => "tienes que llenar el titulo")
+      return;
+    }
+    var ultimoid = this.tareaService.ultimaTarea();
+
+    const tarea: ITarea = {
+      id: (ultimoid?.id ?? 0) + 1,
+      titulo: this.tituloTarea(),
+      hecha: this.hechaTarea(),
+      prioridad: this.prioridadTarea(),
+      fechaVencimiento: this.fechaTarea()
+    }
+    // console.log(tarea)
+
+    this.tareaService.nuevaTarea(tarea);
+    this.tituloTarea.set("");
+    this.hechaTarea.set(false);
+    this.message.set("");
   }
-
-  listaTareas = input.required<ITarea[]>();
-
-  protected readonly console = console;
 }
