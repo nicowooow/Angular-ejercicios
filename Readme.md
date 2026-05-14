@@ -28,6 +28,10 @@ ng generate component component-name
 ```bash
 ng generate service service-name
 ```
+- crear una pipe
+```bash
+ng generate pipe pipe-name
+```
 
 ## componentes de angular
 
