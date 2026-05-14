@@ -9,7 +9,7 @@
     @for (tarea of listaTareas(); track tarea) {
       <tr id="tarea-{{tarea.id}}" [class.hecha]="tarea.hecha" [class.no-hecha]="!tarea.hecha">
         <td>
-          {{ tarea.titulo }}
+          {{ tarea.titulo | toUpper}}
         </td>
         <td>
           {{ tarea.hecha ? "hecha" : "no hecha" }}
